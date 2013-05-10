@@ -1,0 +1,50 @@
+# depslib dependency file v1.0
+1367923485 source:/home/daniel/workspace/IRS2.0/main.cpp
+	<iostream>
+	"include/Collection.h"
+	"include/Index.h"
+
+1367923644 source:/home/daniel/workspace/IRS2.0/src/Collection.cpp
+	"../include/Collection.h"
+
+1367923485 /home/daniel/workspace/IRS2.0/include/Collection.h
+	<string>
+	<vector>
+	<boost/filesystem.hpp>
+	<fstream>
+	<unordered_map>
+	<unordered_set>
+	<set>
+	"FileInfo.h"
+
+1367923644 /home/daniel/workspace/IRS2.0/include/FileInfo.h
+	<string>
+
+1367923644 source:/home/daniel/workspace/IRS2.0/src/FileInfo.cpp
+	"../include/FileInfo.h"
+
+1367834207 source:/home/daniel/workspace/IRS2.0/src/Index.cpp
+	"../include/Index.h"
+
+1367817772 /home/daniel/workspace/IRS2.0/include/Index.h
+	<fstream>
+	<unordered_map>
+	<set>
+	<string>
+	<cstdio>
+	<cctype>
+	"Collection.h"
+
+1367662879 source:/home/daniel/workspace/IRS2.0/src/FileIndex.cpp
+	"../include/FileIndex.h"
+
+1367662898 /home/daniel/workspace/IRS2.0/include/FileIndex.h
+	"Index.h"
+	"Collection.h"
+
+1367667961 source:/home/daniel/workspace/IRS2.0/src/InvertedIndex.cpp
+	"../include/InvertedIndex.h"
+
+1367662911 /home/daniel/workspace/IRS2.0/include/InvertedIndex.h
+	"Index.h"
+
