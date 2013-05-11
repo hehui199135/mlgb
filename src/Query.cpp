@@ -10,8 +10,10 @@ Query::Query(const string &queryWords)
     this->queryWords = queryWords;
 }
 
-
-
+string Query::getQueryWords() const
+{
+    return queryWords;
+}
 
 
 

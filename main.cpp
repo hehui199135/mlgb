@@ -1,5 +1,6 @@
 #include <iostream>
 #include "QueryProcessor.h"
+#include "Query.h"
 #include <boost/date_time/posix_time/posix_time.hpp>
 
 
@@ -12,7 +13,7 @@ using namespace std;
 int main()
 {
     ios::sync_with_stdio(false);
-    string path="/home/daniel/Desktop/C++/Assignment/data/data";
+    string path="/home/daniel/Desktop/C++/Assignment/data (copy)";
     cout << "Welcome to the IR system by qsz13!"<< endl;
     cout << "Please type in the path(left blank for debug mode):" << endl;
     string p;
@@ -43,10 +44,10 @@ int main()
     bool flag = 1;
      while(flag)
      {
-         flag = c.searchQuery();
+        flag = c.searchQuery();
          //c.getResult();
      }
-    cout << "!";
+    cout << "quit!";
 
 
     return 0;

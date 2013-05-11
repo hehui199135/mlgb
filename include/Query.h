@@ -9,12 +9,15 @@ using namespace std;
 class Query
 {
 private:
-    unordered_map<int,unordered_map<string,vector<int>>*> result;
+    unordered_map<int,unordered_map<string,vector<int>>*> result; // to be modified
     string queryWords;
 public:
 
     Query();
     Query(const string &queryWords);
+
+    string getQueryWords() const;
+
     virtual ~Query();
 
 

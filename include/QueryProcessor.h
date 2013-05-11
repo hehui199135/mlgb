@@ -5,27 +5,34 @@
 #include <unordered_map>
 #include <string>
 #include <vector>
+#include <set>
+#include <map>
 #include "Indexer.h"
 #include "Query.h"
+#include "QueryOperator.h"
 class Indexer;
 class QueryProcessor
 {
 private:
     string path;
-    Query query;
     Indexer index;
-    vector<Query*> querySet;
+    vector<Query*>* p_querySet;
     bool isStopWord(const string &str);
+    void trim(string &str);
 public:
     QueryProcessor();
     QueryProcessor(const string &path);
     bool searchQuery();
     //void getResult(); aka excute
-    void analyzeQuery(const vector<Query*> querySet);
+    bool translate(const string &str);  // translate the query line to Queries;
+    void print (map<int,vector<int> > &result);
+    void singleQuery();  //const vector<Query*> querySet?
+    void complexQuery(); //const vector<Query*> querySet?
+    bool isOperator(const Query *query);
 
-    Query* andOperation(Query *left, Query *right);
-    Query* spaceOperation(Query *left, Query *right);
-    Query* orOperation(Query *left, Query *right);
+    Query* andOperation(const Query &left,const Query &right);
+    Query* spaceOperation(const Query &left,const Query &right);
+    Query* orOperation(const Query &left,const Query &right);
 
 
 

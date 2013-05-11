@@ -79,7 +79,7 @@ void Indexer::generateIndex(const boost::filesystem::path &path,int id)
         invertedIndex[temp].push_back(t);
         pos++;
     }
-    fileIndex.push_back( new FileInfo(id,path.branch_path().string(),path.leaf().string(),pos));
+    fileIndex.push_back(new FileInfo(id,path.branch_path().string(),path.leaf().string(),pos));
 }
 
 
@@ -106,16 +106,15 @@ void Indexer::printIndex()
     }
 }
 
-vector<wordPos*>* Indexer::locate(const string word)
+vector<wordPos*>* Indexer::locate(const Query &q)
 {
-    return &invertedIndex[word];
+    return &invertedIndex[q.getQueryWords()];
 }
 
 FileInfo* Indexer::getFileInfo(int id)
 {
     return fileIndex[id];
 }
-
 
 
 

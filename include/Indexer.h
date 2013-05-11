@@ -37,7 +37,7 @@ public:
     Indexer(const string& path);
     void printCollection();
     void printIndex();
-    vector<wordPos*>* locate(const Query &query);
+    vector<wordPos*>* locate(const Query &query) ;
     FileInfo* getFileInfo(int id);
     virtual ~Indexer();
 protected:

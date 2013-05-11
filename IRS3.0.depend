@@ -1,7 +1,8 @@
 # depslib dependency file v1.0
-1368116031 source:/home/daniel/workspace/IRS3.0/main.cpp
+1368188946 source:/home/daniel/workspace/IRS3.0/main.cpp
 	<iostream>
 	"QueryProcessor.h"
+	"Query.h"
 	<boost/date_time/posix_time/posix_time.hpp>
 
 1367923644 source:/home/daniel/workspace/IRS3.0/src/Collection.cpp
@@ -48,13 +49,13 @@
 1367662911 /home/daniel/workspace/IRS3.0/include/InvertedIndex.h
 	"Index.h"
 
-1368108725 source:/home/daniel/workspace/IRS3.0/src/Indexer.cpp
+1368180941 source:/home/daniel/workspace/IRS3.0/src/Indexer.cpp
 	"../include/Indexer.h"
 
-1368116736 source:/home/daniel/workspace/IRS3.0/src/Query.cpp
+1368272898 source:/home/daniel/workspace/IRS3.0/src/Query.cpp
 	"Query.h"
 
-1368108652 /home/daniel/workspace/IRS3.0/include/Indexer.h
+1368180955 /home/daniel/workspace/IRS3.0/include/Indexer.h
 	<string>
 	<vector>
 	<boost/filesystem.hpp>
@@ -63,10 +64,20 @@
 	<unordered_set>
 	<set>
 	"FileInfo.h"
+	"Query.h"
 
-1368116004 source:/home/daniel/workspace/IRS3.0/src/QueryProcessor.cpp
+1368188210 source:/home/daniel/workspace/IRS3.0/src/QueryProcessor.cpp
 	"QueryProcessor.h"
 
 1368109758 source:/home/daniel/workspace/IRS3.0/src/Ranker.cpp
 	"Ranker.h"
+
+1368184164 /home/daniel/workspace/IRS3.0/include/Query.h
+	<sstream>
+	<vector>
+	<string>
+	<unordered_map>
+
+1368272898 source:/home/daniel/workspace/IRS3.0/src/QueryOperator.cpp
+	"QueryOperator.h"
 
