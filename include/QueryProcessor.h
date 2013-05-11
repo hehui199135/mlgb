@@ -7,6 +7,7 @@
 #include <vector>
 #include <set>
 #include <map>
+#include <stack>
 #include "Indexer.h"
 #include "Query.h"
 #include "QueryOperator.h"

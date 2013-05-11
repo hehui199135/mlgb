@@ -35,12 +35,14 @@
 		<Unit filename="include/FileInfo.h" />
 		<Unit filename="include/Indexer.h" />
 		<Unit filename="include/Query.h" />
+		<Unit filename="include/QueryOperator.h" />
 		<Unit filename="include/QueryProcessor.h" />
 		<Unit filename="include/Ranker.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/FileInfo.cpp" />
 		<Unit filename="src/Indexer.cpp" />
 		<Unit filename="src/Query.cpp" />
+		<Unit filename="src/QueryOperator.cpp" />
 		<Unit filename="src/QueryProcessor.cpp" />
 		<Unit filename="src/Ranker.cpp" />
 		<Extensions>

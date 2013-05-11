@@ -59,7 +59,7 @@ bool QueryProcessor::searchQuery()
 bool QueryProcessor::translate(const string &str)
 {
     stringstream istr(str);
-
+    bool previous_is_operator = true;
     while(!istr.eof())
     {
         string t;
@@ -67,10 +67,10 @@ bool QueryProcessor::translate(const string &str)
 
         if(!isStopWord(t))
         {
-            if(typeid(*p_querySet).name() != "QueryOperator")
+            if(!previous_is_operator)
             {
-                cout << "OPERATOR!!";
                 Query *p_Space = new QueryOperator(" ");
+                p_querySet->push_back(p_Space);
             }
 
             Query *p = new Query(t);
@@ -80,6 +80,8 @@ bool QueryProcessor::translate(const string &str)
         else if(t == "and" || t == "or")
         {
             Query *p = new QueryOperator(t);
+            p_querySet->push_back(p);
+            previous_is_operator = true;
         }
     }
     if(p_querySet->empty())
@@ -131,10 +133,12 @@ void QueryProcessor::print( map<int,vector<int> > &result)
 //=======================only for debugging==========================
 
 
-bool isOperator(const Query *query)
+bool QueryProcessor::isOperator(const Query *query)
 {
-    if(typeid(query->getQueryWords()).name() == "QueryOperator")
+    cout << typeid(*query).name();
+    if(query->getQueryWords() == "and" ||query->getQueryWords() == "or" ||query->getQueryWords() == " "  )
     {
+        cout << "FUCK!!!!!!!!!!!!!!!!!";
         return true;
     }
     else
@@ -149,36 +153,42 @@ bool isOperator(const Query *query)
 
 void QueryProcessor::complexQuery() //this is a parser
 {
-    for(vector<Query*>::iterator it = p_querySet->begin();it != p_querySet->end();it++)
+
+    Query *previousQuery = (*p_querySet)[0];
+    Query *tempQueryOp;
+    for(vector<Query*>::iterator it = (p_querySet->begin())+1;it != p_querySet->end();it++)
     {
+       cout << (*it)->getQueryWords() << endl;
+        if(!isOperator(*it))
+        {
+            cout << "what the fuck" << endl;
+            if(tempQueryOp->getQueryWords() == "and")
+            {
+                previousQuery = andOperation(*previousQuery,*(*it));
+                cout << "and found!";
+            }
+            else if(tempQueryOp->getQueryWords() == "or")
+            {
+
+            }
+            else if(tempQueryOp->getQueryWords() == " ")
+            {
+
+            }
 
 
+
+
+        }
+        else
+        {
+            tempQueryOp = *it;
+        }
 
 
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -206,22 +216,20 @@ Query* QueryProcessor::andOperation(const Query &left,const Query &right)
 {
 
 
-    /*
+    Query *reutrnQuery = new Query(left.getQueryWords()+" AND "+ right.getQueryWords());
+
     //map<int,pair<vector<int>,vector<int> > > l,f;
     vector<int> l,r;
     //THIS IS A TEMPORARY SOLUTION maybe bool maybe use skip pointer
-    for(vector<wordPos*>::iterator it = index.locate(left.getQueryWords()).begin();it != index.locate(left.getQueryWords()).end();it++)
+    for(vector<wordPos*>::iterator it = (index.locate(left.getQueryWords()))->begin();it != index.locate(left.getQueryWords())->end();it++)
     {
-        l.push_back(it->fileId);
+        l.push_back((*it)->fileID);
     }
-    for(vector<wordPos*>::iterator it = index.locate(right.getQueryWords()).begin();it != index.locate(right.getQueryWords()).end();it++)
+    for(vector<wordPos*>::iterator it = index.locate(right.getQueryWords())->begin();it != index.locate(right.getQueryWords())->end();it++)
     {
-
-        r.push_back(it->fileID);
+        r.push_back((*it)->fileID);
     }
-
-
-    vector<int> sameFileID
+    vector<int> sameFileID;
 
     for (vector<int>::iterator itl = l.begin();itl != l.end();itl++)
     {
@@ -235,7 +243,7 @@ Query* QueryProcessor::andOperation(const Query &left,const Query &right)
     }
 
 
-*/
+
 
 
     //think about what should be in Query
@@ -322,7 +330,7 @@ void QueryProcessor::getResult()
 
 bool QueryProcessor::isStopWord(const string &str)
 {
-    static set<string> stopWord = {"a","able","about","across","after","all","almost","also","am","among","an","any","are","as","at","be","because","been","but","by","can","cannot","could","dear","did","do","does","either","else","ever","every","for","from","get","got","had","has","have","he","her","hers","him","his","how","however","i","if","in","into","is","it","its","just","least","let","like","likely","may","me","might","most","must","my","neither","no","nor","not","of","off","often","on","only","other","our","own","rather","said","say","says","she","should","since","so","some","than","that","the","their","them","then","there","these","they","this","tis","to","too","twas","us","wants","was","we","were","what","when","where","which","while","who","whom","why","will","with","would","yet","you","your"};
+    static set<string> stopWord = {"and","or","a","able","about","across","after","all","almost","also","am","among","an","any","are","as","at","be","because","been","but","by","can","cannot","could","dear","did","do","does","either","else","ever","every","for","from","get","got","had","has","have","he","her","hers","him","his","how","however","i","if","in","into","is","it","its","just","least","let","like","likely","may","me","might","most","must","my","neither","no","nor","not","of","off","often","on","only","other","our","own","rather","said","say","says","she","should","since","so","some","than","that","the","their","them","then","there","these","they","this","tis","to","too","twas","us","wants","was","we","were","what","when","where","which","while","who","whom","why","will","with","would","yet","you","your"};
     if(stopWord.find(str) == stopWord.end())
     {
         return false;
